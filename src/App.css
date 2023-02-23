@@ -1,13 +1,72 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;800&display=swap");
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
+{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+scroll-behavior: smooth;
+}
+a {
+text-decoration: none;
+color: #f9a826; /* gold color */
 }
 
-a {
-  text-decoration: none;
-  color: gold;
+body {
+background-color: #f5f5f5; /* light gray color */
+}
+
+.container {
+max-width: 1200px;
+margin: 0 auto;
+}
+
+.sidebar {
+padding: 20px;
+background-color: #ffffff; /* white color */
+box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+border-radius: 5px;
+}
+
+.heading {
+color: #222222; /* dark gray color */
+font-size: 36px;
+font-weight: 800;
+}
+
+.description {
+color: #444444; /* gray color */
+font-size: 18px;
+font-weight: 400;
+margin-top: 10px;
+}
+
+.marketData {
+display: flex;
+margin-top: 20px;
+}
+
+.marketDataItem {
+flex: 1;
+padding: 20px;
+background-color: #f9a826; /* gold color /
+color: #ffffff; / white color */
+box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+border-radius: 5px;
+margin-right: 10px;
+text-align: center;
+}
+
+.marketDataItem:last-child {
+margin-right: 0;
+}
+
+.marketDataItemTitle {
+font-size: 18px;
+font-weight: 800;
+margin-bottom: 10px;
+}
+
+.marketDataItemValue {
+font-size: 24px;
+font-weight: 800;
 }
