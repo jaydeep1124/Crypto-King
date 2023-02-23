@@ -53,13 +53,24 @@ export default function CoinsTable() {
   const history = useHistory();
 
   const darkTheme = createTheme({
-    palette: {
-      primary: {
-        main: "#fff",
-      },
-      type: "dark",
+  palette: {
+    primary: {
+      main: '#4caf50',
     },
-  });
+    secondary: {
+      main: '#f44336',
+    },
+    background: {
+      default: '#1e1e1e',
+      paper: '#424242',
+    },
+    text: {
+      primary: '#ffffff',
+      secondary: '#bdbdbd',
+    },
+  },
+});
+
 
   const fetchCoins = async () => {
     setLoading(true);
