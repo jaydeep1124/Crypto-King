@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   bannerContent: {
-    maxWidth: "800px",
+    maxWidth: "1200px",
     margin: "auto",
     textAlign: "center",
   },
