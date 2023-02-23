@@ -22,6 +22,32 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     cursor: "pointer",
   },
+  logo: {
+    height: 50,
+    marginRight: theme.spacing(2),
+    cursor: "pointer",
+  },
+  search: {
+    marginLeft: "auto",
+    width: "30%",
+    background: "white",
+    borderRadius: 20,
+    display: "flex",
+    alignItems: "center",
+    paddingLeft: theme.spacing(1),
+    paddingRight: theme.spacing(1),
+  },
+  searchIcon: {
+    marginRight: theme.spacing(1),
+  },
+  searchInput: {
+    border: "none",
+    width: "100%",
+    background: "none",
+    outline: "none",
+    fontFamily: "Montserrat",
+    fontSize: "1rem",
+  },
 }));
 
 const darkTheme = createTheme({
@@ -41,17 +67,25 @@ function Header() {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <AppBar color="transparent" position="static">
+      <AppBar position="static" style={{ background: "linear-gradient(to right, #ff8a00, #da1b60)" }}>
         <Container>
           <Toolbar>
+            <img src="/logo.png" alt="Crypto King logo" className={classes.logo} onClick={() => history.push(`/`)} />
             <Typography
               onClick={() => history.push(`/`)}
               variant="h6"
               className={classes.title}
             >
-              Crypto Hunter
+              Crypto King
             </Typography>
-            {/* <Button color="inherit">Login</Button> */}
+            <div className={classes.search}>
+              <SearchIcon className={classes.searchIcon} />
+              <input
+                type="text"
+                placeholder="Search coins..."
+                className={classes.searchInput}
+              />
+            </div>
             <Select
               variant="outlined"
               labelId="demo-simple-select-label"
