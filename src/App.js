@@ -7,11 +7,12 @@ import Header from "./components/Header";
 
 const useStyles = makeStyles(() => ({
   App: {
-    backgroundColor: "#14161a",
+    background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
     color: "white",
     minHeight: "100vh",
   },
 }));
+
 
 function App() {
   const classes = useStyles();
