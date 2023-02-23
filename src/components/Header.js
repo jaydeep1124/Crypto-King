@@ -67,10 +67,9 @@ function Header() {
 
   return (
     <ThemeProvider theme={darkTheme}>
-      <AppBar position="static" style={{ background: "linear-gradient(to right, #ff8a00, #da1b60)" }}>
+      <AppBar color="transparent" position="static">
         <Container>
           <Toolbar>
-            <img src="/logo.png" alt="Crypto King logo" className={classes.logo} onClick={() => history.push(`/`)} />
             <Typography
               onClick={() => history.push(`/`)}
               variant="h6"
@@ -78,14 +77,7 @@ function Header() {
             >
               Crypto King
             </Typography>
-            <div className={classes.search}>
-              <SearchIcon className={classes.searchIcon} />
-              <input
-                type="text"
-                placeholder="Search coins..."
-                className={classes.searchInput}
-              />
-            </div>
+            {/* <Button color="inherit">Login</Button> */}
             <Select
               variant="outlined"
               labelId="demo-simple-select-label"
