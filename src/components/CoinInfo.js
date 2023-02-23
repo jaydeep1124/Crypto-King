@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { HistoricalChart } from "../config/api";
 import { Line } from "react-chartjs-2";
@@ -16,7 +15,7 @@ const CoinInfo = ({ coin }) => {
   const [historicData, setHistoricData] = useState();
   const [days, setDays] = useState(1);
   const { currency } = CryptoState();
-  const [flag,setflag] = useState(false);
+  const [flag, setFlag] = useState(false);
 
   const useStyles = makeStyles((theme) => ({
     container: {
@@ -27,6 +26,8 @@ const CoinInfo = ({ coin }) => {
       justifyContent: "center",
       marginTop: 25,
       padding: 40,
+      backgroundColor: "#f2f2f2",
+      borderRadius: 20,
       [theme.breakpoints.down("md")]: {
         width: "100%",
         marginTop: 0,
@@ -40,32 +41,33 @@ const CoinInfo = ({ coin }) => {
 
   const fetchHistoricData = async () => {
     const { data } = await axios.get(HistoricalChart(coin.id, days, currency));
-    setflag(true);
+    setFlag(true);
     setHistoricData(data.prices);
   };
-
-  console.log(coin);
 
   useEffect(() => {
     fetchHistoricData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [days]);
 
-  const darkTheme = createTheme({
+  const lightTheme = createTheme({
     palette: {
       primary: {
-        main: "#fff",
+        main: "#EEBC1D",
       },
-      type: "dark",
+      type: "light",
+      background: {
+        default: "#f2f2f2",
+      },
     },
   });
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={lightTheme}>
       <div className={classes.container}>
-        {!historicData | flag===false ? (
+        {!historicData || !flag ? (
           <CircularProgress
-            style={{ color: "gold" }}
+            style={{ color: "#EEBC1D" }}
             size={250}
             thickness={1}
           />
@@ -109,8 +111,9 @@ const CoinInfo = ({ coin }) => {
               {chartDays.map((day) => (
                 <SelectButton
                   key={day.value}
-                  onClick={() => {setDays(day.value);
-                    setflag(false);
+                  onClick={() => {
+                    setDays(day.value);
+                    setFlag(false);
                   }}
                   selected={day.value === days}
                 >
