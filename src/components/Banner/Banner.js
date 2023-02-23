@@ -4,25 +4,33 @@ import Carousel from "./Carousel";
 const useStyles = makeStyles((theme) => ({
   banner: {
     backgroundImage: "url(./banner2.jpg)",
-  },
-  bannerContent: {
-    height: 400,
-    display: "flex",
-    flexDirection: "column",
-    paddingTop: 25,
-    justifyContent: "space-around",
-  },
-  tagline: {
-    display: "flex",
-    height: "40%",
-    flexDirection: "column",
-    justifyContent: "center",
-    textAlign: "center",
-  },
-  carousel: {
-    height: "50%",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    minHeight: "600px",
     display: "flex",
     alignItems: "center",
+  },
+  bannerContent: {
+    maxWidth: "800px",
+    margin: "auto",
+    textAlign: "center",
+  },
+  tagline: {
+    marginBottom: theme.spacing(3),
+  },
+  title: {
+    fontWeight: "bold",
+    fontFamily: "Montserrat",
+    textTransform: "uppercase",
+    letterSpacing: "2px",
+    color: theme.palette.primary.main,
+    marginBottom: theme.spacing(1),
+  },
+  subtitle: {
+    fontFamily: "Montserrat",
+    color: theme.palette.text.secondary,
+    lineHeight: 1.5,
+    letterSpacing: "1px",
   },
 }));
 
@@ -33,25 +41,11 @@ function Banner() {
     <div className={classes.banner}>
       <Container className={classes.bannerContent}>
         <div className={classes.tagline}>
-          <Typography
-            variant="h2"
-            style={{
-              fontWeight: "bold",
-              marginBottom: 15,
-              fontFamily: "Montserrat",
-            }}
-          >
+          <Typography variant="h4" className={classes.title}>
             Crypto King
           </Typography>
-          <Typography
-            variant="subtitle2"
-            style={{
-              color: "darkgrey",
-              textTransform: "capitalize",
-              fontFamily: "Montserrat",
-            }}
-          >
-            Get all the Info regarding your favorite Crypto Currency
+          <Typography variant="subtitle1" className={classes.subtitle}>
+            Get all the information regarding your favorite cryptocurrency
           </Typography>
         </div>
         <Carousel />
