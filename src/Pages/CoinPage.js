@@ -43,11 +43,16 @@ const CoinPage = () => {
       alignItems: "center",
       marginTop: 25,
       borderRight: "2px solid grey",
+      padding: 25,
+      borderRadius: 5,
+      backgroundColor: "#1F1F1F",
     },
     heading: {
       fontWeight: "bold",
       marginBottom: 20,
       fontFamily: "Montserrat",
+      color: "white",
+      textAlign: "center",
     },
     description: {
       width: "100%",
@@ -56,10 +61,11 @@ const CoinPage = () => {
       paddingBottom: 15,
       paddingTop: 0,
       textAlign: "justify",
+      color: "#B9B9B9",
+      lineHeight: 1.5,
     },
     marketData: {
       alignSelf: "start",
-      padding: 25,
       paddingTop: 10,
       width: "100%",
       [theme.breakpoints.down("md")]: {
@@ -74,85 +80,84 @@ const CoinPage = () => {
         alignItems: "start",
       },
     },
+    marketDataItem: {
+      display: "flex",
+      marginBottom: 10,
+      color: "#B9B9B9",
+      fontFamily: "Montserrat",
+    },
+    marketDataTitle: {
+      fontWeight: "bold",
+      marginRight: 10,
+    },
+    marketDataValue: {
+      fontFamily: "Montserrat",
+    },
   }));
+
 
   const classes = useStyles();
 
-  if (!coin) return <LinearProgress style={{ backgroundColor: "gold" }} />;
+if (!coin) return (
+<div className={classes.loader}>
+<LinearProgress style={{ backgroundColor: "gold" }} />
+</div>
+);
 
-  return (
-    <div className={classes.container}>
-      <div className={classes.sidebar}>
-        <img
-          src={coin?.image.large}
-          alt={coin?.name}
-          height="200"
-          style={{ marginBottom: 20 }}
-        />
-        <Typography variant="h3" className={classes.heading}>
-          {coin?.name}
-        </Typography>
-        <Typography variant="subtitle1" className={classes.description}>
-          {ReactHtmlParser(coin?.description.en.split(". ")[0])}.
-        </Typography>
-        <div className={classes.marketData}>
-          <span style={{ display: "flex" }}>
-            <Typography variant="h5" className={classes.heading}>
-              Rank:
-            </Typography>
-            &nbsp; &nbsp;
-            <Typography
-              variant="h5"
-              style={{
-                fontFamily: "Montserrat",
-              }}
-            >
-              {numberWithCommas(coin?.market_cap_rank)}
-            </Typography>
-          </span>
-
-          <span style={{ display: "flex" }}>
-            <Typography variant="h5" className={classes.heading}>
-              Current Price:
-            </Typography>
-            &nbsp; &nbsp;
-            <Typography
-              variant="h5"
-              style={{
-                fontFamily: "Montserrat",
-              }}
-            >
-              {symbol}{" "}
-              {numberWithCommas(
-                coin?.market_data.current_price[currency.toLowerCase()]
-              )}
-            </Typography>
-          </span>
-          <span style={{ display: "flex" }}>
-            <Typography variant="h5" className={classes.heading}>
-              Market Cap:
-            </Typography>
-            &nbsp; &nbsp;
-            <Typography
-              variant="h5"
-              style={{
-                fontFamily: "Montserrat",
-              }}
-            >
-              {symbol}{" "}
-              {numberWithCommas(
-                coin?.market_data.market_cap[currency.toLowerCase()]
-                  .toString()
-                  .slice(0, -6)
-              )}
-              M
-            </Typography>
-          </span>
-        </div>
-      </div>
-      <CoinInfo coin={coin} />
-    </div>
-  );
+return (
+<div className={classes.container}>
+<div className={classes.sidebar}>
+<img
+src={coin?.image.large}
+alt={coin?.name}
+height="200"
+style={{ marginBottom: 20, borderRadius: 5 }}
+/>
+<Typography variant="h3" className={classes.heading}>
+{coin?.name}
+</Typography>
+<Typography variant="subtitle1" className={classes.description}>
+{ReactHtmlParser(coin?.description.en.split(". ")[0])}.
+</Typography>
+<div className={classes.marketData}>
+<div className={classes.marketDataItem}>
+<Typography variant="h5" className={classes.heading}>
+Rank:
+</Typography>
+<Typography variant="h5" className={classes.marketDataValue}>
+{numberWithCommas(coin?.market_cap_rank)}
+</Typography>
+</div>
+<div className={classes.marketDataItem}>
+<Typography variant="h5" className={classes.heading}>
+Current Price:
+</Typography>
+<Typography variant="h5" className={classes.marketDataValue}>
+{symbol}{" "}
+{numberWithCommas(
+coin?.market_data.current_price[currency.toLowerCase()]
+)}
+</Typography>
+</div>
+<div className={classes.marketDataItem}>
+<Typography variant="h5" className={classes.heading}>
+Market Cap:
+</Typography>
+<Typography variant="h5" className={classes.marketDataValue}>
+{symbol}{" "}
+{numberWithCommas(
+coin?.market_data.market_cap[currency.toLowerCase()]
+.toString()
+.slice(0, -6)
+)}
+M
+</Typography>
+</div>
+</div>
+</div>
+<CoinInfo coin={coin} />
+</div>
+);
 };
 
 export default CoinPage;
